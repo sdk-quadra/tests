@@ -5,3 +5,4 @@ test詰め合わせ
 * mod_cla_inc_ext: moduleとclass、includeとextendの違い
 * rainbow: Ruby本のp324, rainbowメソッドのtestから実装までを記述した
 * bookmark: chromeのjsが効くブックマークのコードをreadmeに記述した
+* tempo_comparable: objectに対し比較, sortできるようにする実装について記述した
