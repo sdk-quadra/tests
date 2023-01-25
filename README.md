@@ -2,11 +2,58 @@
 test詰め合わせ
 
 ### branch: 説明
-* mod_cla_inc_ext: moduleとclass、includeとextendの違い
-* rainbow: Ruby本のp324, rainbowメソッドのtestから実装までを記述した
-* bookmark: chromeのjsが効くブックマークのコードをreadmeに記述した
-* tempo_comparable: objectに対し比較, sortできるようにする実装について記述した
-* module_function: moduleのメソッドを外部から呼ぶmodule_functionと組み込みclass methodの使い方について記述
-* retain_module_val: moduleや静的classが値を保持する様子、通常classはnewするたび値がリセットされる様子を記述
-* ancestor: ancestorで読み込みのclassやmoduleの確認, prependやincludeでの読み込み順の変え方について記述した
-* refinement: 指定したclassでしかメソッドを使えないようにする（制約を掛ける）方法について記述した
+
+dockerでwordpress mysqlを引く例
+
+
+```
+$ docker network create sdk
+```
+
+wordpress
+
+```
+$ docker run --name wordpress000ex12 -dit --net=sdk -p 8085:80 \
+-e WORDPRESS_DB_HOST=mysql000ex11 \
+-e WORDPRESS_DB_NAME=wordpress000db \
+-e WORDPRESS_DB_USER=wordpress000kun \
+-e WORDPRESS_DB_PASSWORD=wkunpass wordpress
+
+---
+
+$ docker run --name mysql000ex11 -dit --net=sdk \
+-e MYSQL_ROOT_PASSWORD=myrootpass \
+-e MYSQL_DATABASE=wordpress000db \
+-e MYSQL_USER=wordpress000kun \
+-e MYSQL_PASSWORD=wkunpass \
+mysql --character-set-server=utf8mb4 \
+--collation-server=utf8mb4_unicode_ci \
+--default-authentication-plugin=mysql_native_password
+
+```
+
+
+redmine
+```
+$ docker run --name redmine000ex14 -dit --network sdk -p 8086:3000 \
+-e REDMINE_DB_MYSQL=mysql000ex13 \
+-e REDMINE_DB_DATABASE=redmine000db \
+-e REDMINE_DB_USERNAME=redmine000kun \
+-e REDMINE_DB_PASSWORD=rkunpass redmine
+
+---
+
+$ docker run --name mysql000ex13 -dit --network sdk \
+-e MYSQL_ROOT_PASSWORD=myrootpass \
+-e MYSQL_DATABASE=redmine000db \
+-e MYSQL_USER=redmine000kun \
+-e MYSQL_PASSWORD=rkunpass \
+mysql --character-set-server=utf8mb4 \
+--collation-server=utf8mb4_unicode_ci \
+--default-authentication-plugin=mysql_native_password
+
+```
+
+#### 確認
+`http://localhost:8085`
+`http://localhost:8086`
